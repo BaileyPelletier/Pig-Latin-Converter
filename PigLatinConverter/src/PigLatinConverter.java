@@ -38,13 +38,26 @@ public class PigLatinConverter {
 		return words;
 	}
 	
+	private static boolean isValid(String w) {
+		boolean validWord = true;
+		for (int i = 0; i < w.length(); i++) {
+			char currChar = w.charAt(i);
+			if (!(Character.isLetter(currChar) || currChar == '.' || currChar == ';' || currChar == ',')) {
+				validWord = false;
+			}
+		}
+		
+		
+		return validWord;
+	}
+	
 	private static String convert(String[] words) {
 		
 		for (int i = 0; i < words.length; i++) {
 			
 			if (words[i].equals("rhythm")) {
 				words[i] = "ythmrhay";
-			} else {
+			} else if (isValid(words[i])){
 			
 				char firstChar = words[i].charAt(0);
 				char lastChar = words[i].charAt(words[i].length()-1);
@@ -77,6 +90,8 @@ public class PigLatinConverter {
 					}
 				}
 				
+			} else {
+				words[i] = words[i];
 			}
 		}
  		
